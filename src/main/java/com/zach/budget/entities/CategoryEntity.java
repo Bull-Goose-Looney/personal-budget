@@ -1,5 +1,7 @@
 package com.zach.budget.entities;
 
+import com.zach.budget.models.Category;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,8 +16,15 @@ public class CategoryEntity {
     @Column(name = "name")
     private String name;
 
+    private String description;
+
     public CategoryEntity() {
         // JPA empty constructor
+    }
+
+    public CategoryEntity(Category category) {
+        this.name = category.getName();
+        this.description = category.getDescritpion();
     }
 
     public Long getId() {
@@ -32,5 +41,13 @@ public class CategoryEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

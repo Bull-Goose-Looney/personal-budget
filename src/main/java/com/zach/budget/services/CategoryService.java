@@ -15,13 +15,12 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    //TODO this should return POJOs not Entites
     public List<CategoryEntity> findAll() {
         return categoryRepository.findAll();
     }
 
-    public CategoryEntity save(CategoryEntity category) {
-        return categoryRepository.save(category);
+    public CategoryEntity save(Category category) {
+        return categoryRepository.save(new CategoryEntity(category));
     }
 
     // Other CRUD methods
