@@ -6,17 +6,22 @@ import com.zach.budget.enums.FrequencyEnums;
 import com.zach.budget.models.Category;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "line_items")
 public class LineItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "line_item_id")
     private Long id;
     
     @Column(name = "name")
@@ -37,7 +42,7 @@ public class LineItemEntity {
     // Foreign key to category table.
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+    private CategoryEntity category;
 
     public LineItemEntity() {
        // Jakarta empty constructor 
@@ -100,11 +105,11 @@ public class LineItemEntity {
         this.frequencyOfDueDate = frequencyOfDueDate;
     }
 
-    public Category getCategory() {
+    public CategoryEntity getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryEntity category) {
         this.category = category;
     }
 

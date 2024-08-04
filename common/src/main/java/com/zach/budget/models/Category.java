@@ -9,6 +9,10 @@ public class Category {
     private String description;
     private List<LineItem> lineItems;
 
+    public Category() {
+        // default for jackson
+    }
+
     public Category(String name, String description) {
         this.name = name;
         this.description = description;
@@ -23,7 +27,7 @@ public class Category {
         this.name = name;
     }
 
-    public String getDescritpion() {
+    public String getDescription() {
         return description;
     }
 
