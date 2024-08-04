@@ -1,4 +1,4 @@
-package com.zach.budget-frontend;
+package com.zach.budget.frontend;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
