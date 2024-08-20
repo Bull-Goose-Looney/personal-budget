@@ -15,45 +15,55 @@ import javafx.scene.control.TextField;
 
 import com.zach.budget.models.Category;
 
+import javafx.scene.control.TabPane;
+
 public class MainController {
 
     @FXML
-    private Button addButton;
+    private TabPane tabPane;
 
     @FXML
-    private Label label;
-
-    @FXML
-    private TextField categoryNameField;
-
-    @FXML
-    private TextField categoryDescriptionField;
-
-    @FXML
-    private void handleAddButton(ActionEvent event) {
-        String name = categoryNameField.getText();
-        String description = categoryDescriptionField.getText();
-        Category category = new Category(name, description);
-        String response = callBackendApi(category);
-
-    }
-
-    private String callBackendApi(Category category) {
-        HttpClient client = HttpClient.newHttpClient();
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            String json = objectMapper.writeValueAsString(category);
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8080/api/category/add"))
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(json))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            return response.body();
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-            return "Error: Unable to add category";
-        }
+    public void initialize() {
+        // Initialization logic if needed
     }
 }
+
+    // @FXML
+    // private Button addButton;
+    //
+    // @FXML
+    // private Label label;
+    //
+    // @FXML
+    // private TextField categoryNameField;
+    //
+    // @FXML
+    // private TextField categoryDescriptionField;
+    //
+    // @FXML
+    // private void handleAddButton(ActionEvent event) {
+    //     String name = categoryNameField.getText();
+    //     String description = categoryDescriptionField.getText();
+    //     Category category = new Category(name, description);
+    //     String response = callBackendApi(category);
+    //
+    // }
+    //
+    // private String callBackendApi(Category category) {
+    //     HttpClient client = HttpClient.newHttpClient();
+    //     ObjectMapper objectMapper = new ObjectMapper();
+    //     try {
+    //         String json = objectMapper.writeValueAsString(category);
+    //         HttpRequest request = HttpRequest.newBuilder()
+    //                 .uri(URI.create("http://localhost:8080/api/category/add"))
+    //                 .header("Content-Type", "application/json")
+    //                 .POST(HttpRequest.BodyPublishers.ofString(json))
+    //                 .build();
+    //
+    //         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+    //         return response.body();
+    //     } catch (IOException | InterruptedException e) {
+    //         e.printStackTrace();
+    //         return "Error: Unable to add category";
+    //     }
+    // }

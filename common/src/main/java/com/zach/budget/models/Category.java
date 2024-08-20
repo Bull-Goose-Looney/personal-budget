@@ -1,22 +1,18 @@
 package com.zach.budget.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Category {
 
     private String name;
     private String description;
-    private List<LineItem> lineItems;
+    private Integer priority;
 
     public Category() {
         // default for jackson
     }
 
-    public Category(String name, String description) {
+    public Category(String name, String description, Integer priority) {
         this.name = name;
         this.description = description;
-        this.lineItems = new ArrayList<>();
     }
 
     public String getName() {
@@ -35,12 +31,12 @@ public class Category {
         this.description = description;
     }
 
-    public List<LineItem> getLineItems() {
-        return lineItems;
+    public Integer getPriority() {
+        return priority;
     }
 
-    public void setLineItems(List<LineItem> lineItems) {
-        this.lineItems = lineItems;
+    public void setPriority(Integer priority) {
+        this.priority = priority;
     }
 
 }

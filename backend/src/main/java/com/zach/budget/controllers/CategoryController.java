@@ -17,15 +17,15 @@ import com.zach.budget.services.CategoryService;
 @RequestMapping("api/category")
 public class CategoryController {
 
-        @Autowired
-        private CategoryService categoryService;
+    @Autowired
+    private CategoryService categoryService;
 
-        private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
 
-        @GetMapping
-        public List<CategoryEntity> getAllCategories() {
-            return categoryService.findAll();
-        }
+    @GetMapping
+    public List<CategoryEntity> getAllCategories() {
+        return categoryService.findAll();
+    }
 
     @PostMapping("/add")
     public ResponseEntity<String> addCategory(@RequestBody Category category) {
