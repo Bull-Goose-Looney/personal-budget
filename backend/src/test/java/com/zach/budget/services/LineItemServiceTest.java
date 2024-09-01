@@ -8,7 +8,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.any;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.zach.budget.entities.LineItemEntity;
+import com.zach.budget.models.LineItem;
 import com.zach.budget.repositories.LineItemRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -21,8 +21,9 @@ public class LineItemServiceTest {
     LineItemService service;
 
     @Test
-    public void testSaveCategory() {
-        when(repo.save(any())).thenReturn(new LineItemEntity());
+    public void testSaveLineItem() {
+        when(repo.save(any())).thenReturn(new LineItem());
+
 
         // service.save(new Category("Some", "Category"));
     }

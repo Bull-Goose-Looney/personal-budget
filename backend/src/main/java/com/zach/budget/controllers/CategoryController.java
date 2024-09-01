@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.zach.budget.entities.CategoryEntity;
 import com.zach.budget.models.Category;
 import com.zach.budget.services.CategoryService;
 
@@ -23,7 +22,7 @@ public class CategoryController {
     private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
 
     @GetMapping
-    public List<CategoryEntity> getAllCategories() {
+    public List<Category> getAllCategories() {
         return categoryService.findAll();
     }
 

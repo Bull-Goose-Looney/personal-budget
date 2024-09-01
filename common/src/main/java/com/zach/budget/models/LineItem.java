@@ -3,120 +3,48 @@ package com.zach.budget.models;
 import com.zach.budget.enums.DateEnums;
 import com.zach.budget.enums.FrequencyEnums;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-public abstract class LineItem {
+@Entity
+@Getter @Setter
+public class LineItem {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "line_item_id")
+    private Long id;
+    
+    @Column(name = "name")
     private String name;
-    private String description;
+
+    @Column(name = "planned_amount")
     private Float plannedAmount;
+
+    @Column(name = "actual_amount")
     private Float actualAmount;
-    private Optional<DateEnums> dueDate;
-    private FrequencyEnums frequencyOfDueDate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "due_date")
+    private DateEnums date;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "frequency")
+    private FrequencyEnums frequency;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
-    private Optional<List<LineItem>> children;
 
-    public LineItem(
-          String name,
-          String description,
-          Float plannedAmount, 
-          Float actualAmount,
-          Optional<DateEnums> dueDate, 
-          FrequencyEnums frequencyOfDueDate, 
-          Category category) {
+    public LineItem() {}
+
+    public LineItem(String name,  Float plannedAmount, Float actualAmount, DateEnums date, FrequencyEnums frequency) {
         this.name = name;
-        this.description = description;
         this.plannedAmount = plannedAmount;
-        this.dueDate = dueDate;
-        this.frequencyOfDueDate = frequencyOfDueDate;
-        this.category = category;
-        this.children = Optional.of(new ArrayList<>());
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Float getPlannedAmount() {
-        return plannedAmount;
-    }
-
-    public void setPlannedAmount(Float plannedAmount) {
-        this.plannedAmount = plannedAmount;
-    }
-
-    public void increasePlannedAmount(Float plannedAmount) {
-        this.plannedAmount += plannedAmount;
-    }
-
-    public void decreasePlannedAmount(Float plannedAmount) {
-        this.plannedAmount -= plannedAmount;
-    }
-
-    public Float getActualAmount() {
-        return plannedAmount;
-    }
-
-    public void setActualAmount(Float actualAmount) {
         this.actualAmount = actualAmount;
-    }
-
-    public void increaseActualAmount(Float actualAmount) {
-        this.actualAmount += actualAmount;
-    }
-
-    public void decreaseActualAmount(Float actualAmount) {
-        this.actualAmount -= actualAmount;
-    }
-
-    public FrequencyEnums getFrequencyOfDueDate() {
-        return frequencyOfDueDate;
-    }
-
-    public Optional<DateEnums> getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(Optional<DateEnums> dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public void setFrequencyOfDueDate(FrequencyEnums frequencyOfDueDate) {
-        this.frequencyOfDueDate = frequencyOfDueDate;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public Optional<List<LineItem>> getChildren() {
-        return children; 
-    }
-
-    public void setChildren(Optional<List<LineItem>> lineItems) {
-        this.children = lineItems;
-    }
-
-    public void addChild(LineItem lineItem) {
-        children.get().add(lineItem); 
+        this.date = date;
+        this.frequency = frequency;
     }
 
 }

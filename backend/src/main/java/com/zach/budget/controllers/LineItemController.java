@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.zach.budget.entities.LineItemEntity;
 import com.zach.budget.models.LineItem;
 import com.zach.budget.services.LineItemService;
 
@@ -23,7 +22,7 @@ public class LineItemController {
     private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
 
     @GetMapping
-    public List<LineItemEntity> getAllCategories() {
+    public List<LineItem> getAllCategories() {
         return lineItemService.findAll();
     }
 

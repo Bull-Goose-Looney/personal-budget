@@ -1,13 +1,14 @@
 package com.zach.budget.services;
 
+import com.zach.budget.utilities.DatabaseUtilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zach.budget.entities.LineItemEntity;
-import com.zach.budget.models.Category;
 import com.zach.budget.models.LineItem;
+import com.zach.budget.models.Category;
 import com.zach.budget.repositories.LineItemRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,32 +17,22 @@ public class LineItemService {
     @Autowired
     private LineItemRepository lineItemRepository;
 
-    public List<LineItemEntity> findAll() {
+    private DatabaseUtilities dbUtil;
+
+    public List<LineItem> findAll() {
         return lineItemRepository.findAll();
     }
 
-    public LineItemEntity save(LineItem lineItem) {
-        return lineItemRepository.save(new LineItemEntity(lineItem));
+    public LineItem save(LineItem lineItem) {
+        return lineItemRepository.save(lineItem);
     }
 
-    // TODO create a db utility class to convert from entity to model and vice versa
-
-    // TODO, add repo method
     public List<LineItem> getLineItemsByCategory(Category category) {
-        return LineItem(lineItemRepository.getAllByCategory(category));
+        return lineItemRepository.getAllByCategory(category);
     }
 
-    // TODO repo
     public LineItem getLineItemByName(String name) {
-        return null;
+        return lineItemRepository.getByName(name);
     }
 
-
-
-
-
-
-
-
-    // Other CRUD methods
 }
