@@ -8,20 +8,21 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.any;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.zach.budget.models.Category;
-import com.zach.budget.repositories.CategoryRepository;
+import com.zach.budget.models.LineItem;
+import com.zach.budget.repositories.LineItemRepository;
 
 @ExtendWith(MockitoExtension.class)
-public class CategoryServiceTest {
+public class LineItemServiceTest {
 
     @Mock
-    CategoryRepository repo;
+    LineItemRepository repo;
 
     @InjectMocks
-    CategoryService service;
+    LineItemService service;
 
-    public void testSaveCategory() {
-        when(repo.save(any())).thenReturn(new Category());
+    @Test
+    public void testSaveLineItem() {
+        // service.save(new Category("Some", "Category"));
     }
 
 }

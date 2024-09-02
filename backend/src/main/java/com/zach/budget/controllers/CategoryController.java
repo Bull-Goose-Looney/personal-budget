@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.zach.budget.entities.CategoryEntity;
 import com.zach.budget.models.Category;
 import com.zach.budget.services.CategoryService;
 
@@ -17,15 +16,20 @@ import com.zach.budget.services.CategoryService;
 @RequestMapping("api/category")
 public class CategoryController {
 
-        @Autowired
-        private CategoryService categoryService;
+    @Autowired
+    private CategoryService categoryService;
 
-        private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
 
-        @GetMapping
-        public List<CategoryEntity> getAllCategories() {
-            return categoryService.findAll();
+    @GetMapping("/categories")
+    public List<Category> getAllCategories() {
+        LOGGER.info("received getAllCategories request at api/category/categories");
+        List<Category> categories = categoryService.findAll();
+        if(categories.isEmpty()) {
+            LOGGER.warn("No categories found");
         }
+        return categories;
+    }
 
     @PostMapping("/add")
     public ResponseEntity<String> addCategory(@RequestBody Category category) {

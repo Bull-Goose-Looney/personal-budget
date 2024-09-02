@@ -3,44 +3,49 @@ package com.zach.budget.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.sound.sampled.Line;
+
+@Entity
+@Getter @Setter
 public class Category {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+    
+    @Column(name = "name")
     private String name;
-    private String description;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LineItem> lineItems;
 
     public Category() {
-        // default for jackson
+        // JPA empty constructor
     }
 
-    public Category(String name, String description) {
+    public Category(String name) {
         this.name = name;
-        this.description = description;
         this.lineItems = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
+    public void addLineItem(LineItem lineItem) {
+        lineItems.add(lineItem);
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<LineItem> getLineItems() {
-        return lineItems;
-    }
-
-    public void setLineItems(List<LineItem> lineItems) {
-        this.lineItems = lineItems;
+    public void removeLineItem(LineItem lineItem) {
+        lineItems.remove(lineItem);
     }
 
 }

@@ -1,88 +1,52 @@
 package com.zach.budget.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zach.budget.enums.DateEnums;
 import com.zach.budget.enums.FrequencyEnums;
 
-import java.util.Optional;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-public abstract class LineItem {
+@Entity
+@Getter @Setter
+public class LineItem {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+    
+    @Column(name = "name")
     private String name;
-    private String description;
-    private Float plannedAmount;
-    private Optional<DateEnums> dueDate;
-    private FrequencyEnums frequencyOfDueDate;
+
+    @Column(name = "planned_amount")
+    private Double plannedAmount;
+
+    @Column(name = "actual_amount")
+    private Double actualAmount;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "due_date")
+    private DateEnums date;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "frequency")
+    private FrequencyEnums frequency;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    @JsonIgnore
     private Category category;
 
-    public LineItem(
-          String name,
-          String description,
-          Float plannedAmount, 
-          Optional<DateEnums> dueDate, 
-          FrequencyEnums frequencyOfDueDate, 
-          Category category) {
+    public LineItem() {}
+
+    public LineItem(String name,  Double plannedAmount, Double actualAmount, DateEnums date, FrequencyEnums frequency) {
         this.name = name;
-        this.description = description;
         this.plannedAmount = plannedAmount;
-        this.dueDate = dueDate;
-        this.frequencyOfDueDate = frequencyOfDueDate;
-        this.category = category;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Float getAmount() {
-        return plannedAmount;
-    }
-
-    public void setPlannedAmount(Float plannedAmount) {
-        this.plannedAmount = plannedAmount;
-    }
-
-    public void increasePlannedAmount(Float plannedAmount) {
-        this.plannedAmount += plannedAmount;
-    }
-
-    public void decreasePlannedAmount(Float plannedAmount) {
-        this.plannedAmount -= plannedAmount;
-    }
-
-    public FrequencyEnums getFrequencyOfDueDate() {
-        return frequencyOfDueDate;
-    }
-
-    public Optional<DateEnums> getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(Optional<DateEnums> dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public void setFrequencyOfDueDate(FrequencyEnums frequencyOfDueDate) {
-        this.frequencyOfDueDate = frequencyOfDueDate;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
+        this.actualAmount = actualAmount;
+        this.date = date;
+        this.frequency = frequency;
     }
 
 }
