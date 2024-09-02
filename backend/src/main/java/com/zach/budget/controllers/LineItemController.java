@@ -2,6 +2,7 @@ package com.zach.budget.controllers;
 
 import java.util.List;
 
+import com.zach.budget.models.Category;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,16 @@ public class LineItemController {
     @Autowired
     private LineItemService lineItemService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LineItemController.class);
 
-    @GetMapping
-    public List<LineItem> getAllCategories() {
-        return lineItemService.findAll();
+    @GetMapping("/getAllByCategory")
+    public List<LineItem> getLineItemsByCategory(@RequestBody Category category) {
+        return lineItemService.getLineItemsByCategory(category);
+    }
+
+    @GetMapping("/getByName")
+    public LineItem getLineItemByName(@RequestBody String name) {
+        return lineItemService.getLineItemByName(name);
     }
 
     @PostMapping("/add")

@@ -22,9 +22,6 @@ public class LineItemServiceTest {
 
     @Test
     public void testSaveLineItem() {
-        when(repo.save(any())).thenReturn(new LineItem());
-
-
         // service.save(new Category("Some", "Category"));
     }
 

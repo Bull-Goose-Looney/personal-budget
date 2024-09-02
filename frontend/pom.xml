@@ -66,7 +66,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>com.zach.budget.frontend.MainApp</mainClass>
+                    <mainClass>com.zach.budget.frontend.BudgetFrontendApplication</mainClass>
                     <jvmArgs>
                         --module-path /path/to/javafx-sdk-${javafx.version}/lib
                         --add-modules javafx.controls,javafx.fxml

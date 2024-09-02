@@ -1,6 +1,5 @@
 package com.zach.budget.services;
 
-import com.zach.budget.utilities.DatabaseUtilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +15,6 @@ public class LineItemService {
 
     @Autowired
     private LineItemRepository lineItemRepository;
-
-    private DatabaseUtilities dbUtil;
 
     public List<LineItem> findAll() {
         return lineItemRepository.findAll();

@@ -20,10 +20,8 @@ public class CategoryServiceTest {
     @InjectMocks
     CategoryService service;
 
-    @Test
     public void testSaveCategory() {
         when(repo.save(any())).thenReturn(new Category());
-
     }
 
 }

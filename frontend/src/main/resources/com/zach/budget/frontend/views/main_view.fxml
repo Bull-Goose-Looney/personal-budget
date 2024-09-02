@@ -4,18 +4,9 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.zach.budget.frontend.controllers.MainController">
-    <TabPane fx:id="main_panel" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
-        <Tab text="Dashboard">
-            <fx:include source="dashboard.fxml"/>
-        </Tab>
-        <Tab text="Budget">
-            <fx:include source="budget.fxml"/>
-        </Tab>
-        <Tab text="Data">
-            <fx:include source="data.fxml"/>
-        </Tab>
-        <!-- Add more tabs as needed -->
-    </TabPane>
-</AnchorPane>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ListView?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.zach.budget.frontend.controllers.MainController">
+        <ListView fx:id="categoryListView" prefWidth="600" prefHeight="600" />
+</BorderPane>
 

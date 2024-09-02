@@ -21,9 +21,14 @@ public class CategoryController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
 
-    @GetMapping
+    @GetMapping("/categories")
     public List<Category> getAllCategories() {
-        return categoryService.findAll();
+        LOGGER.info("received getAllCategories request at api/category/categories");
+        List<Category> categories = categoryService.findAll();
+        if(categories.isEmpty()) {
+            LOGGER.warn("No categories found");
+        }
+        return categories;
     }
 
     @PostMapping("/add")

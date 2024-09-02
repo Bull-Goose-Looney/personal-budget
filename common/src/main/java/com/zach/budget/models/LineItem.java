@@ -1,5 +1,6 @@
 package com.zach.budget.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zach.budget.enums.DateEnums;
 import com.zach.budget.enums.FrequencyEnums;
 
@@ -13,17 +14,17 @@ public class LineItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "line_item_id")
+    @Column(name = "id")
     private Long id;
     
     @Column(name = "name")
     private String name;
 
     @Column(name = "planned_amount")
-    private Float plannedAmount;
+    private Double plannedAmount;
 
     @Column(name = "actual_amount")
-    private Float actualAmount;
+    private Double actualAmount;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "due_date")
@@ -35,11 +36,12 @@ public class LineItem {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
+    @JsonIgnore
     private Category category;
 
     public LineItem() {}
 
-    public LineItem(String name,  Float plannedAmount, Float actualAmount, DateEnums date, FrequencyEnums frequency) {
+    public LineItem(String name,  Double plannedAmount, Double actualAmount, DateEnums date, FrequencyEnums frequency) {
         this.name = name;
         this.plannedAmount = plannedAmount;
         this.actualAmount = actualAmount;

@@ -14,16 +14,18 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.sound.sampled.Line;
+
 @Entity
 @Getter @Setter
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
+    @Column(name = "id")
     private Long id;
     
-    @Column(name = "category_name")
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -36,6 +38,14 @@ public class Category {
     public Category(String name) {
         this.name = name;
         this.lineItems = new ArrayList<>();
+    }
+
+    public void addLineItem(LineItem lineItem) {
+        lineItems.add(lineItem);
+    }
+
+    public void removeLineItem(LineItem lineItem) {
+        lineItems.remove(lineItem);
     }
 
 }
