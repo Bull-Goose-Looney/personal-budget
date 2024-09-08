@@ -1,5 +1,6 @@
 package com.zach.budget.services;
 
+import com.zach.budget.models.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +29,12 @@ public class LineItemService {
         return lineItemRepository.getAllByCategory(category);
     }
 
-    public LineItem getLineItemByName(String name) {
-        return lineItemRepository.getByName(name);
+    public List<LineItem> getLineItemsByAccount(Account account) {
+        return lineItemRepository.getAllByAccount(account);
+    }
+
+    public LineItem getLineItemByName(String description) {
+        return lineItemRepository.getByDescription(description);
     }
 
 }

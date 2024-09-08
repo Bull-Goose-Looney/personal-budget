@@ -1,12 +1,13 @@
 package com.zach.budget.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zach.budget.enums.DateEnums;
 import com.zach.budget.enums.FrequencyEnums;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
@@ -18,21 +19,25 @@ public class LineItem {
     private Long id;
     
     @Column(name = "name")
-    private String name;
+    private String description;
 
     @Column(name = "planned_amount")
     private Double plannedAmount;
 
-    @Column(name = "actual_amount")
-    private Double actualAmount;
+    @Column(name = "next_due")
+    private LocalDateTime nextDue;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "due_date")
-    private DateEnums date;
+    @Column(name = "auto_pay")
+    private boolean isAutoPay;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "frequency")
     private FrequencyEnums frequency;
+
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    @JsonIgnore
+    private Account account;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -41,12 +46,14 @@ public class LineItem {
 
     public LineItem() {}
 
-    public LineItem(String name,  Double plannedAmount, Double actualAmount, DateEnums date, FrequencyEnums frequency) {
-        this.name = name;
+    public LineItem(String description, Double plannedAmount, LocalDateTime nextDue,  FrequencyEnums frequency, boolean isAutoPay, Account account, Category category) {
+        this.description = description;
         this.plannedAmount = plannedAmount;
-        this.actualAmount = actualAmount;
-        this.date = date;
+        this.nextDue = nextDue;
+        this.isAutoPay = isAutoPay;
         this.frequency = frequency;
+        this.account = account;
+        this.category = category;
     }
 
 }

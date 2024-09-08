@@ -1,7 +1,8 @@
 package com.zach.budget.repositories;
 
-import com.zach.budget.enums.DateEnums;
+import com.zach.budget.enums.AccountTypeEnums;
 import com.zach.budget.enums.FrequencyEnums;
+import com.zach.budget.models.Account;
 import com.zach.budget.models.Category;
 import com.zach.budget.models.LineItem;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -24,7 +26,7 @@ public class LineItemRepositoryTest {
 
 	@Test
 	void givenNewLineItem_whenSave_thenSuccess() {
-		LineItem expected = new LineItem("LTEST-1", 22.2, 11.1, DateEnums.DAY_2, FrequencyEnums.MONTHLY);
+		LineItem expected = new LineItem("LTEST-1", 22.2, LocalDateTime.now(), FrequencyEnums.MONTHLY, false, new Account(), new Category("ass"));
 		LineItem actual = lineItemRepository.save(expected);
 		assertThat(entityManager.find(LineItem.class, actual.getId())).isEqualTo(expected);
 	}
@@ -34,8 +36,10 @@ public class LineItemRepositoryTest {
 		Category cat = new Category("TESTCAT-1");
 		entityManager.persist(cat);
 
-		LineItem expected = new LineItem("LTEST-1", 22.2, 11.1, DateEnums.DAY_2, FrequencyEnums.MONTHLY);
-		expected.setCategory(cat);
+		Account acct = new Account("usaa checking", AccountTypeEnums.CHECKING);
+		entityManager.persist(acct);
+
+		LineItem expected = new LineItem("LTEST-1", 22.2, LocalDateTime.now(), FrequencyEnums.MONTHLY, false, acct, cat);
 		entityManager.persist(expected);
 
 		List<LineItem> lineItemsList = lineItemRepository.getAllByCategory(cat);
@@ -45,12 +49,26 @@ public class LineItemRepositoryTest {
 	}
 
 	@Test
-	void givenLineItemName_whenFindByName_thenSuccess() {
-		String name = "LTEST-2";
-		LineItem expected = new LineItem(name, 22.2, 11.1, DateEnums.DAY_2, FrequencyEnums.MONTHLY);
+	void givenLineItemName_whenFindByDescription_thenSuccess() {
+		String description = "LTEST-1";
+
+		LineItem expected = new LineItem("LTEST-1", 22.2, LocalDateTime.now(), FrequencyEnums.MONTHLY, false, null, null);
 		entityManager.persist(expected);
 
-		LineItem actual = lineItemRepository.getByName(name);
+		LineItem actual = lineItemRepository.getByDescription(description);
+		assertThat(entityManager.find(LineItem.class, actual.getId())).isEqualTo(expected);
+	}
+
+	@Test
+	void givenLineItem_whenFindByAccount_thenSuccess() {
+		Account acct = new Account("usaa checking", AccountTypeEnums.CHECKING);
+		entityManager.persist(acct);
+
+		LineItem expected = new LineItem("LTEST-1", 22.2, LocalDateTime.now(), FrequencyEnums.MONTHLY, false, acct, null);
+		entityManager.persist(expected);
+
+		List<LineItem> returnedList = lineItemRepository.getAllByAccount(acct);
+		LineItem actual = returnedList.get(0);
 		assertThat(entityManager.find(LineItem.class, actual.getId())).isEqualTo(expected);
 	}
 }

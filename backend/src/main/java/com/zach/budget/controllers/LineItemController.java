@@ -40,11 +40,11 @@ public class LineItemController {
         try {
           lineItemService.save(lineItem);
         } catch (Exception e) {
-            return new ResponseEntity<>("Line item added: " + lineItem.getName(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Line item added: " + lineItem.getDescription(), HttpStatus.NOT_FOUND);
         }
 
-        LOGGER.info("Category {} stored in database", lineItem.getName());
-        return new ResponseEntity<>("Category added: " + lineItem.getName(), HttpStatus.OK);
+        LOGGER.info("Category {} stored in database", lineItem.getDescription());
+        return new ResponseEntity<>("Category added: " + lineItem.getDescription(), HttpStatus.OK);
     }
 
         // Other endpoints

@@ -1,6 +1,5 @@
 package com.zach.budget.frontend.controllers;
 
-import java.net.URL;
 import java.net.http.HttpClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URI;
@@ -8,51 +7,24 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import com.zach.budget.models.LineItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
 
 import com.zach.budget.models.Category;
 
-import javafx.scene.layout.BorderPane;
-import javafx.util.Callback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MainController implements Initializable {
+public class CategoryController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MainController.class);
-
-    @FXML
-    private BorderPane borderPane;
-
-    @FXML
-    private ListView<Category> categoryListView;
+    private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
 
 	private final HttpClient httpClient = HttpClient.newHttpClient();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    private ObservableList<Category> categories = FXCollections.observableArrayList();
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Set custom cell factory
-        categoryListView.setCellFactory(new Callback<>() {
-            @Override
-            public CategoryCellController call(ListView<Category> param) {
-                return new CategoryCellController();
-            }
-        });
-        loadCategories();
-    }
-
-    private void loadCategories() {
+    public ObservableList<Category> loadCategories() {
         try {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(new URI("http://localhost:8080/api/category/categories"))
@@ -67,15 +39,10 @@ public class MainController implements Initializable {
                 for(Category cat: categories) {
                     LOGGER.info("Category: {} has line items: ", cat.getName());
                     for(LineItem lineItem : cat.getLineItems()) {
-                        LOGGER.info("Category: {}", lineItem.getName());
+                        LOGGER.info("Category: {}", lineItem.getDescription());
                     }
                 }
-                // Convert list to ObservableList for JavaFX
-	            ObservableList<Category> observableCategories = FXCollections.observableArrayList(categories);
-
-                // Update the ListView with the categories
-                categoryListView.setItems(observableCategories);
-
+	            return FXCollections.observableArrayList(categories);
             } else {
                 // Handle non-200 responses
                 System.err.println("Failed to fetch categories: " + response.statusCode());
@@ -84,6 +51,7 @@ public class MainController implements Initializable {
         } catch (Exception e) {
             LOGGER.error("Failed to load Categories");
         }
+        return null;
     }
 
     public void addCategory(Category category) {
