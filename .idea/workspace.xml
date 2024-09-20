@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b4ac9bb6-5456-4cba-bf9d-5590d6ca7610" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/init_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/init_db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/logback-spring.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/src/main/java/com/zach/budget/BudgetBackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/main/java/com/zach/budget/BudgetBackendApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/src/main/java/com/zach/budget/controllers/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/main/java/com/zach/budget/controllers/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/src/main/java/com/zach/budget/controllers/LineItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/main/java/com/zach/budget/controllers/LineItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/src/main/java/com/zach/budget/repositories/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/main/java/com/zach/budget/repositories/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/src/main/java/com/zach/budget/repositories/LineItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/main/java/com/zach/budget/repositories/LineItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/src/main/java/com/zach/budget/services/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/main/java/com/zach/budget/services/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/src/main/java/com/zach/budget/services/LineItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/main/java/com/zach/budget/services/LineItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/src/test/java/com/zach/budget/BudgetBackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/test/java/com/zach/budget/BudgetBackendApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/src/test/java/com/zach/budget/repositories/CategoryRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/test/java/com/zach/budget/repositories/CategoryRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/src/test/java/com/zach/budget/repositories/LineItemRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/test/java/com/zach/budget/repositories/LineItemRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/src/test/java/com/zach/budget/services/CategoryServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/test/java/com/zach/budget/services/CategoryServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/backend/src/test/java/com/zach/budget/services/LineItemServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/test/java/com/zach/budget/services/LineItemServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/common/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/common/src/main/java/com/zach/budget/enums/AccountTypeEnums.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/main/java/com/zach/budget/enums/AccountTypeEnums.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/common/src/main/java/com/zach/budget/enums/FrequencyEnums.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/main/java/com/zach/budget/enums/FrequencyEnums.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/common/src/main/java/com/zach/budget/models/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/main/java/com/zach/budget/models/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/common/src/main/java/com/zach/budget/models/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/main/java/com/zach/budget/models/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/common/src/main/java/com/zach/budget/models/LineItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/src/main/java/com/zach/budget/models/LineItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/frontend/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/frontend/src/main/java/com/zach/budget/frontend/BudgetFrontendApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/frontend/src/main/java/com/zach/budget/frontend/controllers/CategoryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/frontend/src/main/java/com/zach/budget/frontend/views/AddLineItemForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/frontend/src/main/java/com/zach/budget/frontend/views/CategoryCell.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/frontend/src/main/java/com/zach/budget/frontend/views/CategoryList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/frontend/src/main/java/com/zach/budget/frontend/views/LineItemCell.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/frontend/src/main/java/com/zach/budget/frontend/views/LineItemList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/frontend/src/main/java/com/zach/budget/frontend/views/MainView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budget-backend/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="JavaFXApplication" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/budget-backend" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2lO6irLYk3kvUTYZ5D14BxB8vA0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Unnamed.executor": "Run",
+    "Application.run-backend.executor": "Run",
+    "Application.run-frontend.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.All in backend.executor": "Run",
+    "JUnit.BudgetBackendApplicationTests.executor": "Run",
+    "JUnit.CategoryRepositoryTest.givenNewCategory_whenSave_thenSuccess.executor": "Run",
+    "JUnit.LineItemRepositoryTest.executor": "Run",
+    "JUnit.LineItemRepositoryTest.givenCategory_whenFind_thenSuccess.executor": "Run",
+    "JUnit.LineItemRepositoryTest.givenLineItemName_whenFindByDescription_thenSuccess.executor": "Run",
+    "JUnit.LineItemRepositoryTest.givenLineItemName_whenFindByName_thenSuccess.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "develop",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/bull-goose-looney/src/budget/budget-backend",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.43493977",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/frontend/src/main/resources/com/zach/budget/frontend/views" />
+      <recent name="$PROJECT_DIR$/frontend/src/main/resources/com/zach/budget/frontend/views/budget" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.run-backend">
+    <configuration name="run-backend" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.zach.budget.BudgetBackendApplication" />
+      <module name="backend" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="run-frontend" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="BUNDLED" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.zach.budget.frontend.BudgetFrontendApplication" />
+      <module name="frontend" />
+      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/lib/javafx-sdk-17.0.12/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in backend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LineItemRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zach.budget.repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zach.budget.repositories" />
+      <option name="MAIN_CLASS_NAME" value="com.zach.budget.repositories.LineItemRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LineItemRepositoryTest.givenCategory_whenFind_thenSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zach.budget.repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zach.budget.repositories" />
+      <option name="MAIN_CLASS_NAME" value="com.zach.budget.repositories.LineItemRepositoryTest" />
+      <option name="METHOD_NAME" value="givenCategory_whenFind_thenSuccess" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LineItemRepositoryTest.givenLineItemName_whenFindByDescription_thenSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zach.budget.repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zach.budget.repositories" />
+      <option name="MAIN_CLASS_NAME" value="com.zach.budget.repositories.LineItemRepositoryTest" />
+      <option name="METHOD_NAME" value="givenLineItemName_whenFindByDescription_thenSuccess" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LineItemRepositoryTest.givenLineItemName_whenFindByName_thenSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zach.budget.repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zach.budget.repositories" />
+      <option name="MAIN_CLASS_NAME" value="com.zach.budget.repositories.LineItemRepositoryTest" />
+      <option name="METHOD_NAME" value="givenLineItemName_whenFindByName_thenSuccess" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.run-backend" />
+      <item itemvalue="Application.run-frontend" />
+      <item itemvalue="JUnit.All in backend" />
+      <item itemvalue="JUnit.LineItemRepositoryTest" />
+      <item itemvalue="JUnit.LineItemRepositoryTest.givenCategory_whenFind_thenSuccess" />
+      <item itemvalue="JUnit.LineItemRepositoryTest.givenLineItemName_whenFindByDescription_thenSuccess" />
+      <item itemvalue="JUnit.LineItemRepositoryTest.givenLineItemName_whenFindByName_thenSuccess" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.LineItemRepositoryTest" />
+        <item itemvalue="JUnit.LineItemRepositoryTest.givenLineItemName_whenFindByDescription_thenSuccess" />
+        <item itemvalue="JUnit.All in backend" />
+        <item itemvalue="JUnit.LineItemRepositoryTest.givenLineItemName_whenFindByName_thenSuccess" />
+        <item itemvalue="JUnit.LineItemRepositoryTest.givenCategory_whenFind_thenSuccess" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b4ac9bb6-5456-4cba-bf9d-5590d6ca7610" name="Changes" comment="" />
+      <created>1725038905872</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1725038905872</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/budget$run_backend.ic" NAME="run-backend Coverage Results" MODIFIED="1725212530319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+  </component>
+</project>
