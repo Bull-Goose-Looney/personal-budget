@@ -40,11 +40,11 @@ public class CategoryController {
         try {
           categoryService.save(category);
         } catch (Exception e) {
-            return new ResponseEntity<>("Category added: " + category.getName(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Category added: " + category.getDescription(), HttpStatus.NOT_FOUND);
         }
 
-        LOGGER.info("Category {} stored in database", category.getName());
-        return new ResponseEntity<>("Category added: " + category.getName(), HttpStatus.OK);
+        LOGGER.info("Category {} stored in database", category.getDescription());
+        return new ResponseEntity<>("Category added: " + category.getDescription(), HttpStatus.OK);
     }
 
         // Other endpoints

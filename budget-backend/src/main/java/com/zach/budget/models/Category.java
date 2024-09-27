@@ -22,8 +22,8 @@ public class Category {
     @Column(name = "id")
     private Long id;
     
-    @Column(name = "name")
-    private String name;
+    @Column(name = "description")
+    private String description;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LineItem> lineItems;
@@ -32,8 +32,8 @@ public class Category {
         // JPA empty constructor
     }
 
-    public Category(String name) {
-        this.name = name;
+    public Category(String description) {
+        this.description = description;
         this.lineItems = new ArrayList<>();
     }
 

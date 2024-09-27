@@ -1,0 +1,32 @@
+.category-list-container {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+}
+
+.category-container {
+  
+}
+
+.category-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ccc;
+}
+
+.drag-placeholder {
+  margin: 10px 0;
+}
+
+.card-command-header-container {
+  display: flex-horizontal;
+  justify-content: space-around; /* Aligns buttons with space around them */
+  align-items: center; /* Aligns buttons vertically in the center */
+  padding: 20px;
+  background-color: #000000;
+  border-radius: 10px;
+}

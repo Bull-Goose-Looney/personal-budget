@@ -18,7 +18,7 @@ public class LineItem {
     @Column(name = "id")
     private Long id;
     
-    @Column(name = "name")
+    @Column(name = "description")
     private String description;
 
     @Column(name = "planned_amount")

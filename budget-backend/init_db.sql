@@ -12,9 +12,9 @@ INSERT INTO account (description, type) VALUES
 DROP TABLE IF EXISTS category CASCADE;
 CREATE TABLE category (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(20) UNIQUE NOT NULL
+    description VARCHAR(20) UNIQUE NOT NULL
 );
-INSERT INTO category (name) VALUES
+INSERT INTO category (description) VALUES
   ('Uncategorized'),
   ('Housing'),
   ('Transportation'),
