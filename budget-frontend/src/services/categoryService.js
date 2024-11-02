@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const CATEGORY_API_URL = "http://localhost:8080/api/category"; // Backend URL
 
-export const getCategories = async () => {
+export const fetchCategories = async () => {
   try {
     const response = await axios.get(CATEGORY_API_URL + "/categories");
     return response.data;

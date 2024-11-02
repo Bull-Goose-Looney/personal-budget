@@ -45,4 +45,12 @@ public class Category {
         lineItems.remove(lineItem);
     }
 
+    public String getDescription() {
+        return  description;
+    }
+
+    public void setDescription(String description) {
+       this.description = description; 
+    }
+
 }

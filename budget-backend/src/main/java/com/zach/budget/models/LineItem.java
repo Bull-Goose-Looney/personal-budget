@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Getter @Setter
@@ -25,7 +25,7 @@ public class LineItem {
     private Double plannedAmount;
 
     @Column(name = "next_due")
-    private LocalDateTime nextDue;
+    private LocalDate nextDue;
 
     @Column(name = "auto_pay")
     private boolean isAutoPay;
@@ -46,7 +46,7 @@ public class LineItem {
 
     public LineItem() {}
 
-    public LineItem(String description, Double plannedAmount, LocalDateTime nextDue,  FrequencyEnums frequency, boolean isAutoPay, Account account, Category category) {
+    public LineItem(String description, Double plannedAmount, LocalDate nextDue,  FrequencyEnums frequency, boolean isAutoPay, Account account, Category category) {
         this.description = description;
         this.plannedAmount = plannedAmount;
         this.nextDue = nextDue;
@@ -54,6 +54,20 @@ public class LineItem {
         this.frequency = frequency;
         this.account = account;
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return(
+            this.id.toString() +
+            this.description +
+            this.plannedAmount.toString() +
+            this.nextDue.toString() +
+            this.isAutoPay +
+            this.frequency +
+            "TODO" +
+            this.category.getDescription()
+        );
     }
 
 }
