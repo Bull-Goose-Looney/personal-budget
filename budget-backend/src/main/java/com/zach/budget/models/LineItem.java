@@ -1,73 +1,42 @@
 package com.zach.budget.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zach.budget.enums.FrequencyEnums;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Entity
 @Getter @Setter
 public class LineItem {
+	private String name;
+	private Double plannedAmount;
+	private LocalDate nextDue;
+	private boolean isAutoPay;
+	private FrequencyEnums frequency;
+	private Account account;
+	private Category category;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-    
-    @Column(name = "description")
-    private String description;
+	public LineItem(String name, Double plannedAmount, LocalDate nextDue, 
+			FrequencyEnums frequency, boolean isAutoPay, Account account, Category category) {
+		this.name = name;
+		this.plannedAmount = plannedAmount;
+		this.nextDue = nextDue;
+		this.isAutoPay = isAutoPay;
+		this.frequency = frequency;
+		this.account = account;
+		this.category = category;
+	}
 
-    @Column(name = "planned_amount")
-    private Double plannedAmount;
-
-    @Column(name = "next_due")
-    private LocalDate nextDue;
-
-    @Column(name = "auto_pay")
-    private boolean isAutoPay;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "frequency")
-    private FrequencyEnums frequency;
-
-    @ManyToOne
-    @JoinColumn(name = "account_id")
-    @JsonIgnore
-    private Account account;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    @JsonIgnore
-    private Category category;
-
-    public LineItem() {}
-
-    public LineItem(String description, Double plannedAmount, LocalDate nextDue,  FrequencyEnums frequency, boolean isAutoPay, Account account, Category category) {
-        this.description = description;
-        this.plannedAmount = plannedAmount;
-        this.nextDue = nextDue;
-        this.isAutoPay = isAutoPay;
-        this.frequency = frequency;
-        this.account = account;
-        this.category = category;
-    }
-
-    @Override
-    public String toString() {
-        return(
-            this.id.toString() +
-            this.description +
-            this.plannedAmount.toString() +
-            this.nextDue.toString() +
-            this.isAutoPay +
-            this.frequency +
-            "TODO" +
-            this.category.getDescription()
-        );
-    }
-
+	@Override
+	public String toString() {
+		return(
+				this.name +
+				this.plannedAmount.toString() +
+				this.nextDue.toString() +
+				this.isAutoPay +
+				this.frequency +
+				this.category.getName()
+		);
+	}
 }

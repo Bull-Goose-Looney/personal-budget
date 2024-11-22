@@ -1,16 +1,17 @@
 
 package com.zach.budget.repositories;
 
-import com.zach.budget.models.Account;
-import com.zach.budget.models.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.zach.budget.models.LineItem;
+import com.zach.budget.entities.LineItemEntity;
+import com.zach.budget.models.Account;
+import com.zach.budget.models.Category;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface LineItemRepository extends JpaRepository<LineItem, Long> {
-    List<LineItem> getAllByAccount(Account account);
-    List<LineItem> getAllByCategory(Category category);
-    LineItem getByDescription(String description);
+public interface LineItemRepository extends JpaRepository<LineItemEntity, Long> {
+    List<LineItemEntity> getAllByAccount(Account account);
+    List<LineItemEntity> getAllByCategory(Category category);
+    Optional<LineItemEntity> findByName(String name);
 }

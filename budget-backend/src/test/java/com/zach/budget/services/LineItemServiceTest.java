@@ -4,11 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.any;
+
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.zach.budget.models.LineItem;
 import com.zach.budget.repositories.LineItemRepository;
 
 @ExtendWith(MockitoExtension.class)

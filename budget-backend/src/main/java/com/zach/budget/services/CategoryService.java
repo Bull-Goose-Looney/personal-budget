@@ -1,14 +1,18 @@
 package com.zach.budget.services;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
+import com.zach.budget.models.Category;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zach.budget.models.Category;
+import com.zach.budget.conversion.CategoryMapper;
+import com.zach.budget.entities.CategoryEntity;
 import com.zach.budget.repositories.CategoryRepository;
 
 @Service
@@ -19,38 +23,25 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public List<Category> findAll() {
-        LOGGER.info("Loading Categories");
-        try {
-            List<Category> result = categoryRepository.findAll();
-            LOGGER.info("loaded {} categories", result.size());
-            return result;
-        } catch (Exception e) {
-            LOGGER.error("There was a problem loading the categories");
-        }
-        return null;
-    }
+    @Autowired
+    private CategoryMapper categoryMapper;
 
     @Transactional
-    public Category save(Category category) {
-        try {
-            Category result = categoryRepository.save(category);
-            LOGGER.info("Saved category={}", result.getDescription());
-            return result;
-
-        } catch(Exception e) {
-            LOGGER.error("There was a problem saving the category");
-        }
-        return null;
+    public Category save(CategoryEntity category) {
+        return categoryMapper.toModel(categoryRepository.save(category));
     }
 
-    public Category getCategoryByDescription(String description) {
-        try {
-            return categoryRepository.findByDescription(description);
-        } catch (Exception e) {
-            LOGGER.error("Failed to find category with description={}", description);
-        }
-        return null;
+    public List<Category> findAll() {
+        LOGGER.info("Loading Categories");
+        return categoryRepository.findAll().stream()
+                .map(categoryEntity -> categoryMapper.toModel(categoryEntity))
+                .collect(Collectors.toList());
+    }
+
+    public Optional<Category> getCategoryByName(String name) {
+        Optional<CategoryEntity> categoryEntity = categoryRepository.findByName(name);
+        return categoryEntity.map(categoryMapper::toModel);
+
     }
 
 }

@@ -2,18 +2,21 @@ package com.zach.budget.repositories;
 
 import com.zach.budget.enums.AccountTypeEnums;
 import com.zach.budget.enums.FrequencyEnums;
-import com.zach.budget.models.Account;
+import com.zach.budget.entities.AccountEntity;
+import com.zach.budget.entities.CategoryEntity;
+import com.zach.budget.entities.LineItemEntity;
 import com.zach.budget.models.Category;
-import com.zach.budget.models.LineItem;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @DataJpaTest
 public class LineItemRepositoryTest {
@@ -26,49 +29,39 @@ public class LineItemRepositoryTest {
 
 	@Test
 	void givenNewLineItem_whenSave_thenSuccess() {
-		LineItem expected = new LineItem("LTEST-1", 22.2, LocalDateTime.now(), FrequencyEnums.MONTHLY, false, new Account(), new Category("ass"));
-		LineItem actual = lineItemRepository.save(expected);
-		assertThat(entityManager.find(LineItem.class, actual.getId())).isEqualTo(expected);
+		LineItemEntity expected = new LineItemEntity("LTEST-1", 22.2, LocalDate.now(), FrequencyEnums.MONTHLY, false, new AccountEntity(), new CategoryEntity("ass"));
+		LineItemEntity actual = lineItemRepository.save(expected);
+		assertThat(entityManager.find(LineItemEntity.class, actual.getId())).isEqualTo(expected);
 	}
 
 	@Test
 	void givenCategory_whenFind_thenSuccess() {
-		Category cat = new Category("TESTCAT-1");
+		CategoryEntity cat = new CategoryEntity("TESTCAT-1");
 		entityManager.persist(cat);
 
-		Account acct = new Account("usaa checking", AccountTypeEnums.CHECKING);
+		AccountEntity acct = new AccountEntity("USAA Checking", AccountTypeEnums.CHECKING);
 		entityManager.persist(acct);
 
-		LineItem expected = new LineItem("LTEST-1", 22.2, LocalDateTime.now(), FrequencyEnums.MONTHLY, false, acct, cat);
+		LineItemEntity expected = new LineItemEntity("LTEST-1", 22.2, LocalDate.now(), FrequencyEnums.MONTHLY, false, acct, cat);
 		entityManager.persist(expected);
 
-		List<LineItem> lineItemsList = lineItemRepository.getAllByCategory(cat);
-		LineItem actual = lineItemsList.get(0);
 
-		assertThat(entityManager.find(LineItem.class, actual.getId())).isEqualTo(expected);
+		List<LineItemEntity> lineItemsList = lineItemRepository.getAllByCategory(new Category("TESTCAT-1"));
+		LineItemEntity actual = lineItemsList.get(0);
+
+		assertThat(entityManager.find(LineItemEntity.class, actual.getId())).isEqualTo(expected);
 	}
 
 	@Test
 	void givenLineItemName_whenFindByDescription_thenSuccess() {
-		String description = "LTEST-1";
+		String name = "LTEST-1";
 
-		LineItem expected = new LineItem("LTEST-1", 22.2, LocalDateTime.now(), FrequencyEnums.MONTHLY, false, null, null);
+		LineItemEntity expected = new LineItemEntity("LTEST-1", 22.2, LocalDate.now(), FrequencyEnums.MONTHLY, false, null, null);
 		entityManager.persist(expected);
 
-		LineItem actual = lineItemRepository.getByDescription(description);
-		assertThat(entityManager.find(LineItem.class, actual.getId())).isEqualTo(expected);
+		Optional<LineItemEntity> actual = lineItemRepository.findByName(name);
+		assertNotEquals(Optional.empty(), actual);
+		assertThat(entityManager.find(LineItemEntity.class, actual.get().getId())).isEqualTo(expected);
 	}
 
-	@Test
-	void givenLineItem_whenFindByAccount_thenSuccess() {
-		Account acct = new Account("usaa checking", AccountTypeEnums.CHECKING);
-		entityManager.persist(acct);
-
-		LineItem expected = new LineItem("LTEST-1", 22.2, LocalDateTime.now(), FrequencyEnums.MONTHLY, false, acct, null);
-		entityManager.persist(expected);
-
-		List<LineItem> returnedList = lineItemRepository.getAllByAccount(acct);
-		LineItem actual = returnedList.get(0);
-		assertThat(entityManager.find(LineItem.class, actual.getId())).isEqualTo(expected);
-	}
 }

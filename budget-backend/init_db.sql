@@ -12,9 +12,9 @@ INSERT INTO account (description, type) VALUES
 DROP TABLE IF EXISTS category CASCADE;
 CREATE TABLE category (
     id SERIAL PRIMARY KEY,
-    description VARCHAR(20) UNIQUE NOT NULL
+    name VARCHAR(20) UNIQUE NOT NULL
 );
-INSERT INTO category (description) VALUES
+INSERT INTO category (name) VALUES
   ('Uncategorized'),
   ('Housing'),
   ('Transportation'),
@@ -32,10 +32,10 @@ CREATE TABLE line_item (
     frequency VARCHAR(20),
     auto_pay BOOLEAN,
     account_id INTEGER,
-    category_id INTEGER,
+    category_id INT NOT NULL,
     updated_at TIMESTAMP,
     FOREIGN KEY (account_id) REFERENCES account (id),
-    FOREIGN KEY (category_id) REFERENCES category (id)
+    FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE
 );
 INSERT INTO line_item (description, planned_amount, next_due, frequency, auto_pay, account_id, category_id) VALUES
 ('LineItem1', 500.25, '2024-09-08 14:30:00', 'MONTHLY', TRUE, 1, 1),

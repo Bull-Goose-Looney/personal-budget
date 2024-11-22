@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.zach.budget.entities.CategoryEntity;
 import com.zach.budget.models.Category;
 import com.zach.budget.services.CategoryService;
 
@@ -38,18 +39,18 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addCategory(@RequestBody Category category) {
+    public ResponseEntity<String> addCategory(@RequestBody CategoryEntity category) {
         // Your logic to handle the category
         LOGGER.info("Recieved addCategory request at api/category/add");
 
         try {
           categoryService.save(category);
         } catch (Exception e) {
-            return new ResponseEntity<>("Category added: " + category.getDescription(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Category added: " + category.getName(), HttpStatus.NOT_FOUND);
         }
 
-        LOGGER.info("Category {} stored in database", category.getDescription());
-        return new ResponseEntity<>("Category added: " + category.getDescription(), HttpStatus.OK);
+        LOGGER.info("Category {} stored in database", category.getName());
+        return new ResponseEntity<>("Category added: " + category.getName(), HttpStatus.OK);
     }
 
         // Other endpoints
