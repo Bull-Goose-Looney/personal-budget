@@ -15,6 +15,7 @@ const AddLineItemModal = ({ category, onSubmit, onCancel }) => {
   const [nextDue, setNextDue] = useState('');
   const [isAutoPay, setIsAutoPay] = useState('');
   const [frequency, setFrequency] = useState('MONTHLY');
+  const [setCategory] = useState(category);
 
   const handleSubmit = () => {
     const newItem = {
@@ -24,7 +25,7 @@ const AddLineItemModal = ({ category, onSubmit, onCancel }) => {
       nextDue,
       isAutoPay,
       frequency,
-      category,
+      category
     };
     onSubmit(newItem);
     onCancel();
@@ -33,6 +34,7 @@ const AddLineItemModal = ({ category, onSubmit, onCancel }) => {
     setNextDue('');
     setIsAutoPay('');
     setFrequency('');
+    setCategory(category);
   };
 
   // Close modal if user clicks outside the content
@@ -65,6 +67,7 @@ const AddLineItemModal = ({ category, onSubmit, onCancel }) => {
                 className={inputField}
                 value={plannedAmount}
                 onChange={(e) => setPlannedAmount(parseFloat(e.target.value))}
+                placeholder="$0.00"
               />
             </label>
 

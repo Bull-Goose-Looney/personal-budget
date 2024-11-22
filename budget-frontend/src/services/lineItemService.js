@@ -3,12 +3,15 @@ import axios from 'axios';
 
 const LINE_ITEM_API_URL = "http://localhost:8080/api/lineitem"; // Backend URL
 
-export const fetchLineItemsByCategory = async (categoryDescription) => {
+// Fetch line items by category ID
+export const fetchLineItemsByCategory = async (categoryId) => {
   try {
-    const response = await axios.get(`${LINE_ITEM_API_URL}/getallbycategory/${categoryDescription}`);
+    const response = await axios.get(`${LINE_ITEM_API_URL}`, {
+      params: { categoryId }, // Pass categoryId as query parameter
+    });
     return response.data;
   } catch (error) {
-    console.error("Error fetching users:", error);
+    console.error('Error fetching line items by category:', error.response?.data || error.message);
     throw error;
   }
 };
