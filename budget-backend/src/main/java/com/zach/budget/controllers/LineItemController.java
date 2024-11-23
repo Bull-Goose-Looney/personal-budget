@@ -3,13 +3,17 @@ package com.zach.budget.controllers;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.zach.budget.entities.LineItemEntity;
 import com.zach.budget.models.Category;
@@ -39,10 +43,10 @@ public class LineItemController {
 
         List<LineItem> lineItems = lineItemService.getLineItemsByCategory(category.get());
         if(lineItems.isEmpty()) {
-            LOGGER.warn("No line items found for category=[{}]", categoryName);
+            // LOGGER.warn("No line items found for category=[{}]", categoryName);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return ResponseEntity.ok(lineItems);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/getbyname")

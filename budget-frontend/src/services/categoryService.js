@@ -6,6 +6,7 @@ const CATEGORY_API_URL = "http://localhost:8080/api/category"; // Backend URL
 export const fetchCategories = async () => {
   try {
     const response = await axios.get(CATEGORY_API_URL + "/categories");
+    console.log(response);
     return response.data;
   } catch (error) {
     console.error('Error fetching categories:', error);

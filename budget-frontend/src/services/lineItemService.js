@@ -4,10 +4,10 @@ import axios from 'axios';
 const LINE_ITEM_API_URL = "http://localhost:8080/api/lineitem"; // Backend URL
 
 // Fetch line items by category ID
-export const fetchLineItemsByCategory = async (categoryId) => {
+export const fetchLineItemsByCategory = async (categoryName) => {
   try {
     const response = await axios.get(`${LINE_ITEM_API_URL}`, {
-      params: { categoryId }, // Pass categoryId as query parameter
+      params: { categoryName }, // Pass categoryId as query parameter
     });
     return response.data;
   } catch (error) {

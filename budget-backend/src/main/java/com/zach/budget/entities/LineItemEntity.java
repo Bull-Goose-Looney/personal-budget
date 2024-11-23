@@ -1,15 +1,20 @@
 package com.zach.budget.entities;
 
-import com.zach.budget.enums.FrequencyEnums;
-
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 
+import com.zach.budget.enums.FrequencyEnums;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 @Entity
-@Getter @Setter
 public class LineItemEntity {
 
 	@Id
@@ -48,9 +53,73 @@ public class LineItemEntity {
 		this.name = name;
 		this.plannedAmount = plannedAmount;
 		this.nextDue = nextDue;
-		this.isAutoPay = isAutoPay;
 		this.frequency = frequency;
+		this.isAutoPay = isAutoPay;
 		this.account = account;
+		this.category = category;
+	}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+	public Double getPlannedAmount() {
+		return plannedAmount;
+	}
+
+	public void setPlannedAmount(double plannedAmount) {
+		this.plannedAmount = plannedAmount;
+	}
+
+	public LocalDate getNextDue() {
+		return nextDue;
+	}
+
+	public void setNextDue(LocalDate nextDue) {
+		this.nextDue = nextDue;
+	}
+
+	public Boolean getIsAutoPay() {
+		return isAutoPay;
+	}
+
+	public void setIsAutoPay(Boolean isAutoPay) {
+		this.isAutoPay = isAutoPay;
+	}
+
+	public FrequencyEnums getFrequency() {
+		return frequency;
+	}
+
+	public void setFrequency(FrequencyEnums frequency) {
+		this.frequency = frequency;
+	}
+
+	public AccountEntity getAccount() {
+		return this.account;
+	}
+
+	public void setAccount(AccountEntity account) {
+		this.account = account;
+	}
+
+	public CategoryEntity getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryEntity category) {
 		this.category = category;
 	}
 

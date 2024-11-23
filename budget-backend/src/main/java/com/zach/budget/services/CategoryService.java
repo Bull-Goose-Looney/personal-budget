@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.zach.budget.models.Category;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zach.budget.conversion.CategoryMapper;
 import com.zach.budget.entities.CategoryEntity;
+import com.zach.budget.models.Category;
 import com.zach.budget.repositories.CategoryRepository;
 
 @Service
@@ -32,7 +32,6 @@ public class CategoryService {
     }
 
     public List<Category> findAll() {
-        LOGGER.info("Loading Categories");
         return categoryRepository.findAll().stream()
                 .map(categoryEntity -> categoryMapper.toModel(categoryEntity))
                 .collect(Collectors.toList());

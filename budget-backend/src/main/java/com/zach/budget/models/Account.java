@@ -1,20 +1,38 @@
 package com.zach.budget.models;
 
-import com.zach.budget.entities.LineItemEntity;
 import com.zach.budget.enums.AccountTypeEnums;
-import lombok.Getter;
-import lombok.Setter;
 
-import java.util.List;
-
-@Getter
-@Setter
 public class Account {
-		private Long id;
-		private String name;
-		private AccountTypeEnums type;
-		private List<LineItemEntity> lineItems;
 
-		public Account() {}
+	private Long id;
+	private String name;
+	private AccountTypeEnums type;
+
+	public Account() {
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public AccountTypeEnums getType() {
+		return type;
+	}
+
+	public void setType(AccountTypeEnums type) {
+		this.type = type;
+	}
 
 }

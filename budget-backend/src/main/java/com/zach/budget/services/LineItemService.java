@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.zach.budget.conversion.AccountMapper;
+import com.zach.budget.conversion.CategoryMapper;
 import com.zach.budget.conversion.LineItemMapper;
+import com.zach.budget.entities.AccountEntity;
 import com.zach.budget.entities.LineItemEntity;
 import com.zach.budget.models.Account;
 import com.zach.budget.models.Category;
@@ -28,6 +31,12 @@ public class LineItemService {
     @Autowired
     private LineItemMapper lineItemMapper;
 
+    @Autowired
+    private CategoryMapper categoryMapper;
+
+    @Autowired
+    private AccountMapper accountMapper;
+
 
     @Transactional
     public LineItemEntity save(LineItemEntity lineItem) {
@@ -41,15 +50,19 @@ public class LineItemService {
     }
 
     public List<LineItem> getLineItemsByCategory(Category category) {
-        List<LineItemEntity> entities = lineItemRepository.getAllByCategory(category);
-        LOGGER.info("Loading Line Items for Category={}", category.getName());
+        LOGGER.info("CATEGORYID: {}", category.getId());
+        List<LineItemEntity> entities = lineItemRepository.getAllByCategoryId(category.getId());
+
+        // LOGGER.info("Loading Line Items for Category={}", category.getName());
         return entities.stream()
             .map(e -> lineItemMapper.toModel(e))
             .collect(Collectors.toList());
     }
 
     public List<LineItem> getLineItemsByAccount(Account account) {
-        List<LineItemEntity> entities = lineItemRepository.getAllByAccount(account);
+
+        AccountEntity accountEntity = accountMapper.toEntity(account);
+        List<LineItemEntity> entities = lineItemRepository.getAllByAccount(accountEntity);
         return entities.stream()
             .map(e -> lineItemMapper.toModel(e))
             .collect(Collectors.toList());

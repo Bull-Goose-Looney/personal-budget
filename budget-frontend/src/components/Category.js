@@ -25,7 +25,7 @@ const Category = ({ category }) => {
   useEffect(() => {
     const loadLineItems = async () => {
       try {
-        const data = await fetchLineItemsByCategory(category.id);
+        const data = await fetchLineItemsByCategory(category.name);
         console.log('Fetched line items:', data); // Debugging
         setLineItems(data);
       } catch (error) {
@@ -33,7 +33,7 @@ const Category = ({ category }) => {
       }
     };
     loadLineItems();
-  }, [category.id]);
+  }, [category.name]);
 
   const handleDeleteLineItem = (itemId) => {
     setLineItems((prevLineItems) =>

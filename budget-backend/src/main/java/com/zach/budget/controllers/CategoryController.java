@@ -29,13 +29,14 @@ public class CategoryController {
     private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
 
     @GetMapping("/categories")
-    public List<Category> getAllCategories() {
+    public ResponseEntity<List<Category>> getAllCategories() {
         LOGGER.info("received getAllCategories request at api/category/categories");
         List<Category> categories = categoryService.findAll();
         if(categories.isEmpty()) {
             LOGGER.warn("No categories found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return categories;
+        return ResponseEntity.ok(categories);
     }
 
     @PostMapping("/add")

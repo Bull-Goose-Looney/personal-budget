@@ -18,8 +18,9 @@
 
     <properties>
         <java.version>17</java.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <org.mapstruct.version>1.6.3</org.mapstruct.version>
+        <!-- <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target> -->
     </properties>
 
     <dependencies>
@@ -66,12 +67,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
         </dependency>
@@ -79,15 +74,7 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
-            <version>1.5.5.Final</version>
-        </dependency>
-
-        <!-- MapStruct Annotation Processor for Compile-Time Generation -->
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-            <version>1.5.5.Final</version>
-            <scope>provided</scope>
+            <version>${org.mapstruct.version}</version>
         </dependency>
     </dependencies>
 
