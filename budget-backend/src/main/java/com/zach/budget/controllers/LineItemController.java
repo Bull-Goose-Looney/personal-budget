@@ -42,6 +42,9 @@ public class LineItemController {
         }
 
         List<LineItem> lineItems = lineItemService.getLineItemsByCategory(category.get());
+        for(LineItem l : lineItems) {
+            LOGGER.info(l.toString());
+        }
         if(lineItems.isEmpty()) {
             LOGGER.warn("No line items found for category=[{}]", categoryName);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

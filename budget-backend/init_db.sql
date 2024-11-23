@@ -33,7 +33,6 @@ CREATE TABLE line_item (
     auto_pay BOOLEAN,
     account_id INTEGER,
     category_id INT NOT NULL,
-    updated_at TIMESTAMP,
     FOREIGN KEY (account_id) REFERENCES account (id),
     FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE
 );

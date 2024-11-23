@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zach.budget.conversion.AccountMapper;
-import com.zach.budget.conversion.CategoryMapper;
 import com.zach.budget.conversion.LineItemMapper;
 import com.zach.budget.entities.AccountEntity;
 import com.zach.budget.entities.LineItemEntity;
@@ -32,9 +31,6 @@ public class LineItemService {
     private LineItemMapper lineItemMapper;
 
     @Autowired
-    private CategoryMapper categoryMapper;
-
-    @Autowired
     private AccountMapper accountMapper;
 
 
@@ -50,10 +46,8 @@ public class LineItemService {
     }
 
     public List<LineItem> getLineItemsByCategory(Category category) {
-        LOGGER.info("CATEGORYID: {}", category.getId());
         List<LineItemEntity> entities = lineItemRepository.getAllByCategoryId(category.getId());
-
-        // LOGGER.info("Loading Line Items for Category={}", category.getName());
+        LOGGER.info("Loading Line Items for Category name={}, id={}", category.getName(), category.getId());
         return entities.stream()
             .map(e -> lineItemMapper.toModel(e))
             .collect(Collectors.toList());

@@ -34,18 +34,15 @@ public class LineItemRepositoryTest {
 	}
 
 	@Test
-	void givenCategory_whenFind_thenSuccess() {
-		CategoryEntity cat = new CategoryEntity("TESTCAT-1");
-		entityManager.persist(cat);
+	void givenCategory_whenFindByCategoryId_thenSuccess() {
+		CategoryEntity cat = entityManager.persist(new CategoryEntity("TESTCAT-1"));
+		AccountEntity account = entityManager.persist(new AccountEntity("USAA Checking", AccountTypeEnums.CHECKING));
 
-		AccountEntity acct = new AccountEntity("USAA Checking", AccountTypeEnums.CHECKING);
-		entityManager.persist(acct);
-
-		LineItemEntity expected = new LineItemEntity("LTEST-1", 22.2, LocalDate.now(), FrequencyEnums.MONTHLY, false, acct, cat);
+		LineItemEntity expected = new LineItemEntity("LTEST-1", 22.2, LocalDate.now(), FrequencyEnums.MONTHLY, false, account, cat);
 		entityManager.persist(expected);
 
 
-		List<LineItemEntity> lineItemsList = lineItemRepository.getAllByCategory(cat);
+		List<LineItemEntity> lineItemsList = lineItemRepository.getAllByCategoryId(cat.getId());
 		LineItemEntity actual = lineItemsList.get(0);
 
 		assertThat(entityManager.find(LineItemEntity.class, actual.getId())).isEqualTo(expected);
