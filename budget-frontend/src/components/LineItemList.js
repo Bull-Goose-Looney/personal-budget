@@ -16,36 +16,38 @@ const LineItemList = ({ items, category, onAddLineItem, onEditLineItem, onDelete
     <div className={lineItemListContainer()}>
       {/* Line Item List Container */}
       <div className={lineItemContainer()}>
-        {items.map((item) => (
-          <LineItemCard
-            key={item.id}
-            item={item}
-            category={category}
-            handleEdit={onEditLineItem}
-            handleDelete={onDeleteLineItem}
-          />
-        ))}
+        {Array.isArray(items) && items.length > 0 ? (
+          items.map((item) => (
+            <LineItemCard
+              key={item.id}
+              item={item}
+              category={category}
+              handleEdit={onEditLineItem}
+              handleDelete={onDeleteLineItem}
+            />
+          ))
+        ) : (
+          <p>No items available</p> // Fallback if `items` is empty
+        )}
       </div>
-
+  
       {/* Modal component for adding a new line item */}
       {isModalOpen && (
         <AddLineItemModal
           categoryId
           onCancel={closeModal}
-          onSubmit={(item) => {onAddLineItem(item)}}  // Add functionality as needed for adding items
+          onSubmit={(item) => {
+            onAddLineItem(item);
+          }}
         />
       )}
-
+  
       {/* Button to open the modal */}
-      <button
-        onClick={openModal}
-        className={openModalButton()}
-      >
+      <button onClick={openModal} className={openModalButton()}>
         Add Line Item
       </button>
     </div>
   );
 };
-
 export default LineItemList;
 

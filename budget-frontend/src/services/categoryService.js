@@ -6,6 +6,7 @@ const CATEGORY_API_URL = "http://localhost:8080/api/category"; // Backend URL
 export const fetchCategories = async () => {
   try {
     const response = await axios.get(CATEGORY_API_URL + "/categories");
+    console.log(response);
     return response.data;
   } catch (error) {
     console.error('Error fetching categories:', error);
@@ -13,14 +14,17 @@ export const fetchCategories = async () => {
   }
 };
 
-export const addCategory = async () => {
+const addCategory = async (newCategory) => {
   try {
-    const response = await axios.get(CATEGORY_API_URL + "/add");
-    return response.data;
+    const response = await axios.post('/api/categories', newCategory, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data; // Axios responses include the data in `response.data`
   } catch (error) {
-    console.error('Error adding new category:', error);
-    throw error; // You might want to handle errors differently depending on the app
+    console.error('Error adding category:', error.response?.data || error.message);
+    throw error;
   }
 };
 
-// Add more category-related API functions here if needed (e.g., createCategory, updateCategory, etc.)

@@ -3,12 +3,24 @@ import axios from 'axios';
 
 const LINE_ITEM_API_URL = "http://localhost:8080/api/lineitem"; // Backend URL
 
-export const fetchLineItemsByCategory = async (categoryDescription) => {
+// Fetch line items by category name
+export const fetchLineItemsByCategory = async (categoryName) => {
   try {
-    const response = await axios.get(`${LINE_ITEM_API_URL}/getallbycategory/${categoryDescription}`);
-    return response.data;
+    const response = await axios.get(`${LINE_ITEM_API_URL}`, {
+      params: { categoryName }, // Pass categoryName as query parameter
+    });
+
+    // Check if the response data is an empty array
+    if (Array.isArray(response.data) && response.data.length === 0) {
+      console.warn(`No line items found for category: ${categoryName}`);
+    }
+
+    return response.data; // Return the data regardless of whether it's empty
   } catch (error) {
-    console.error("Error fetching users:", error);
+    console.error(
+      'Error fetching line items by category:',
+      error.response?.data || error.message
+    );
     throw error;
   }
 };

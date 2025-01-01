@@ -1,73 +1,96 @@
 package com.zach.budget.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zach.budget.enums.FrequencyEnums;
-
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 
-@Entity
-@Getter @Setter
+import com.zach.budget.enums.FrequencyEnums;
+
 public class LineItem {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-    
-    @Column(name = "description")
-    private String description;
+	private Long id;
+	private String name;
+	private Double plannedAmount;
+	private LocalDate nextDue;
+	private Boolean isAutoPay;
+	private FrequencyEnums frequency;
+	private Category category;
 
-    @Column(name = "planned_amount")
-    private Double plannedAmount;
+	public LineItem(String name, Double plannedAmount, LocalDate nextDue, 
+			FrequencyEnums frequency, boolean isAutoPay, Account account, Category category) {
+		this.id = null;
+		this.name = name;
+		this.plannedAmount = plannedAmount;
+		this.nextDue = nextDue;
+		this.isAutoPay = isAutoPay;
+		this.frequency = frequency;
+		this.category = category;
+	}
 
-    @Column(name = "next_due")
-    private LocalDate nextDue;
+	@Override
+	public String toString() {
+		return(
+			this.name +
+			this.plannedAmount.toString() +
+			this.nextDue.toString() +
+			this.isAutoPay +
+			this.frequency +
+			this.category.getName()
+		);
+	}
 
-    @Column(name = "auto_pay")
-    private boolean isAutoPay;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "frequency")
-    private FrequencyEnums frequency;
-
-    @ManyToOne
-    @JoinColumn(name = "account_id")
-    @JsonIgnore
-    private Account account;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    @JsonIgnore
-    private Category category;
-
-    public LineItem() {}
-
-    public LineItem(String description, Double plannedAmount, LocalDate nextDue,  FrequencyEnums frequency, boolean isAutoPay, Account account, Category category) {
-        this.description = description;
-        this.plannedAmount = plannedAmount;
-        this.nextDue = nextDue;
-        this.isAutoPay = isAutoPay;
-        this.frequency = frequency;
-        this.account = account;
-        this.category = category;
+    public Long getId() {
+        return id;
     }
 
-    @Override
-    public String toString() {
-        return(
-            this.id.toString() +
-            this.description +
-            this.plannedAmount.toString() +
-            this.nextDue.toString() +
-            this.isAutoPay +
-            this.frequency +
-            "TODO" +
-            this.category.getDescription()
-        );
+    public void setId(Long id) {
+        this.id = id;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+	public Double getPlannedAmount() {
+		return plannedAmount;
+	}
+
+	public void setPlannedAmount(double plannedAmount) {
+		this.plannedAmount = plannedAmount;
+	}
+
+	public LocalDate nextDue() {
+		return nextDue;
+	}
+
+	public void setNextDue(LocalDate nextDue) {
+		this.nextDue = nextDue;
+	}
+
+	public Boolean getIsAutoPay() {
+		return isAutoPay;
+	}
+
+	public void setIsAutoPay(Boolean isAutoPay) {
+		this.isAutoPay = isAutoPay;
+	}
+
+	public FrequencyEnums getFrequency() {
+		return frequency;
+	}
+
+	public void setFrequency(FrequencyEnums frequency) {
+		this.frequency = frequency;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 }

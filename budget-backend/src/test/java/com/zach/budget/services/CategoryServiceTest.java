@@ -1,6 +1,5 @@
 package com.zach.budget.services;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -21,7 +20,7 @@ public class CategoryServiceTest {
     CategoryService service;
 
     public void testSaveCategory() {
-        when(repo.save(any())).thenReturn(new Category());
+        when(repo.save(any())).thenReturn(new Category(null));
     }
 
 }

@@ -13,7 +13,7 @@ const LineItemCard = ({ item, handleEditLineItem }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [description, setDescription] = useState(item.description);
   const [plannedAmount, setPlannedAmount] = useState(item.plannedAmount);
-  const [nextDue, setNextDue] = useState(new Date(item.nextDue).toISOString().split('T')[0]);
+  const [nextDue, setNextDue] = useState(new Date(item.nextDue));
   const [isAutoPay, setIsAutoPay] = useState(item.isAutoPay);
   const [frequency, setFrequency] = useState(item.frequency);
 
@@ -25,7 +25,7 @@ const LineItemCard = ({ item, handleEditLineItem }) => {
       ...item,
       description,
       plannedAmount,
-      nextDue: nextDue ? new Date(nextDue).toISOString().split('T')[0] : null,
+      nextDue: nextDue ? new Date(nextDue.toISOString()) : null,
       isAutoPay,
       frequency,
     };
