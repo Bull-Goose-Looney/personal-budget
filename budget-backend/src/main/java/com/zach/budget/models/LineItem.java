@@ -12,7 +12,6 @@ public class LineItem {
 	private LocalDate nextDue;
 	private Boolean isAutoPay;
 	private FrequencyEnums frequency;
-	private Account account;
 	private Category category;
 
 	public LineItem(String name, Double plannedAmount, LocalDate nextDue, 
@@ -23,7 +22,6 @@ public class LineItem {
 		this.nextDue = nextDue;
 		this.isAutoPay = isAutoPay;
 		this.frequency = frequency;
-		this.account = account;
 		this.category = category;
 	}
 
@@ -85,14 +83,6 @@ public class LineItem {
 
 	public void setFrequency(FrequencyEnums frequency) {
 		this.frequency = frequency;
-	}
-
-	public Account getAccount() {
-		return this.account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
 	}
 
 	public Category getCategory() {

@@ -1,5 +1,6 @@
 package com.zach.budget.controllers;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +35,7 @@ public class LineItemController {
     private static final Logger LOGGER = LoggerFactory.getLogger(LineItemController.class);
 
     @GetMapping
-    public ResponseEntity<List<LineItem>> getLineItemsByCategory(@RequestParam("categoryName") String categoryName) {
+    public ResponseEntity<List<LineItem>> getLineItemsByCategory(@RequestParam(name = "categoryName") String categoryName) {
         Optional<Category> category = categoryService.getCategoryByName(categoryName);
         if (category.isEmpty()) {
             LOGGER.error("Could not get list of LineItems because category=[{}] not found",categoryName);
@@ -47,9 +48,9 @@ public class LineItemController {
         }
         if(lineItems.isEmpty()) {
             LOGGER.warn("No line items found for category=[{}]", categoryName);
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.ok(Collections.emptyList());
         }
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(lineItems);
     }
 
     @GetMapping("/getbyname")

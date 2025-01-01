@@ -61,7 +61,6 @@ public class LineItemMapper {
         lineItemEntity.setPlannedAmount(model.getPlannedAmount());
         lineItemEntity.setIsAutoPay( model.getIsAutoPay() );
         lineItemEntity.setFrequency( model.getFrequency() );
-        lineItemEntity.setAccount( accountMapper.toEntity( model.getAccount() ) );
         lineItemEntity.setCategory( categoryMapper.toEntity( model.getCategory() ) );
 
         return lineItemEntity;

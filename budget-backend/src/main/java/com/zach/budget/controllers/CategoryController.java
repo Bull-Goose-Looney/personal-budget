@@ -1,5 +1,6 @@
 package com.zach.budget.controllers;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -34,7 +35,7 @@ public class CategoryController {
         List<Category> categories = categoryService.findAll();
         if(categories.isEmpty()) {
             LOGGER.warn("No categories found");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.ok(Collections.emptyList());
         }
         return ResponseEntity.ok(categories);
     }
