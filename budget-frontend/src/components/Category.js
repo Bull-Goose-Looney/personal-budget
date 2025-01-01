@@ -7,7 +7,7 @@ const Category = ({ category }) => {
 
   const handleAddLineItem = async (newItem) => {
     try {
-      const itemWithCategory = {...newItem, category: category}
+      const itemWithCategory = {...newItem, category: category.id}
       const savedItem = await saveLineItem(itemWithCategory);
       setLineItems((prevLineItems) => [...prevLineItems, savedItem]);
     } catch (error) {
