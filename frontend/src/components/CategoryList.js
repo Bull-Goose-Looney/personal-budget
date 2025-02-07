@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { fetchCategories, addCategory } from '../services/categoryService'
 import Category from './Category'
 
@@ -7,10 +7,15 @@ const CategoryList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const isFetched = useRef(false);
+
   useEffect(() => {
     const loadCategories = async () => {
+      if (isFetched.current) return;
+      isFetched.current = true;
       try {
         const data = await fetchCategories();
+        console.log("loading categories");
         setCategories(data);
       } catch (error) {
         console.error("Failed to fetch categories:", error);
@@ -20,7 +25,7 @@ const CategoryList = () => {
       }
     };
     loadCategories();
-  }, []);
+  }, [categories]);
 
   if (loading) return <p>Loading categories...</p>;
   if (error) return <p>{error}</p>;

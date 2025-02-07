@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import LineItemList from './LineItemList';
 import { saveLineItem, fetchLineItemsByCategory} from '../services/lineItemService'
 
 const Category = ({ category }) => {
   const [lineItems, setLineItems] = useState([]);
+  const isFetched = useRef(false);
 
   const handleAddLineItem = async (newItem) => {
     try {
-      const itemWithCategory = {...newItem, category: category.id}
+      const itemWithCategory = {...newItem, category: category}
       const savedItem = await saveLineItem(itemWithCategory);
       setLineItems((prevLineItems) => [...prevLineItems, savedItem]);
     } catch (error) {
@@ -24,6 +25,9 @@ const Category = ({ category }) => {
 
   useEffect(() => {
     const loadLineItems = async () => {
+      if (isFetched.current) return; 
+      isFetched.current = true;
+
       try {
         const data = await fetchLineItemsByCategory(category.name);
         console.log('Fetched line items:', data); // Debugging
@@ -33,7 +37,7 @@ const Category = ({ category }) => {
       }
     };
     loadLineItems();
-  }, [category.name]);
+  }, [category]);
 
   const handleDeleteLineItem = (itemId) => {
     setLineItems((prevLineItems) =>

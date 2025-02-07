@@ -10,7 +10,7 @@ const saveButton = "px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-
 const cancelButton = "px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600";
 
 const AddLineItemModal = ({ category, onSubmit, onCancel }) => {
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState('');
   const [plannedAmount, setPlannedAmount] = useState(0);
   const [nextDue, setNextDue] = useState('');
   const [isAutoPay, setIsAutoPay] = useState('');
@@ -19,8 +19,7 @@ const AddLineItemModal = ({ category, onSubmit, onCancel }) => {
 
   const handleSubmit = () => {
     const newItem = {
-      id: Date.now(),  // Example ID, use something unique
-      description,
+      name,
       plannedAmount,
       nextDue,
       isAutoPay,
@@ -29,12 +28,12 @@ const AddLineItemModal = ({ category, onSubmit, onCancel }) => {
     };
     onSubmit(newItem);
     onCancel();
-    setDescription('');
+    setName('');
     setPlannedAmount(0);
     setNextDue('');
     setIsAutoPay('');
     setFrequency('');
-    setCategory(category);
+    // setCategory(category);
   };
 
   // Close modal if user clicks outside the content
@@ -55,8 +54,8 @@ const AddLineItemModal = ({ category, onSubmit, onCancel }) => {
               <input
                 type="text"
                 className={inputField}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </label>
 
